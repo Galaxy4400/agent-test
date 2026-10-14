@@ -30,6 +30,14 @@
   .eff { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 12px; font-weight: 600;
     background: var(--line); color: var(--ink); margin-left: 4px; }
 
+  /* ---------- предупреждение ---------- */
+  .notice { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 14px; padding: 12px 16px; border-radius: 12px;
+    background: #fff4cc; border: 1px solid #f0c94a; color: #5c4400; font-size: 14px; }
+  .notice b { color: inherit; }
+  @media (prefers-color-scheme: dark) {
+    .notice { background: #3a2f0a; border-color: #8a6d12; color: #f5dc8a; }
+  }
+
   /* ---------- таблица рейтинга ---------- */
   .tablewrap { background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; min-width: 980px; }
@@ -72,6 +80,8 @@
 
   <h2>Рейтинг: от худшего к лучшему</h2>
   <p class="sub">Сверху худший результат, снизу лучший.</p>
+
+  <div class="notice" role="note"><span aria-hidden="true">⚠️</span><span><b>Цены приблизительные.</b> Стоимость прогонов рассчитывали сами модели, поэтому цифры неточные и годятся только для грубого сравнения.</span></div>
 
   <div class="tablewrap">
   <table>
