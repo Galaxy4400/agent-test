@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Слон на воздушном шаре</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #bfe3f5; }
+  body { display: flex; align-items: center; justify-content: center; }
+  svg { width: min(100vw, 100vh); height: min(100vw, 100vh); display: block; }
+</style>
+</head>
+<body>
+<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Слон летит на воздушном шаре">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5aa9e6"/>
+      <stop offset="1" stop-color="#d9f0fb"/>
+    </linearGradient>
+    <radialGradient id="balloon" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#ff7b6b"/>
+      <stop offset="0.6" stop-color="#e83f4f"/>
+      <stop offset="1" stop-color="#a8192f"/>
+    </radialGradient>
+    <radialGradient id="elephant" cx="0.4" cy="0.35" r="0.8">
+      <stop offset="0" stop-color="#b9c2cc"/>
+      <stop offset="1" stop-color="#7f8a97"/>
+    </radialGradient>
+    <clipPath id="balloonClip">
+      <path d="M400 70 C250 70 190 190 200 290 C210 380 290 440 350 470 L450 470 C510 440 590 380 600 290 C610 190 550 70 400 70 Z"/>
+    </clipPath>
+    <g id="cloud">
+      <ellipse cx="0" cy="0" rx="60" ry="22" fill="#fff"/>
+      <ellipse cx="-30" cy="-14" rx="32" ry="22" fill="#fff"/>
+      <ellipse cx="14" cy="-22" rx="38" ry="26" fill="#fff"/>
+      <ellipse cx="46" cy="-6" rx="28" ry="18" fill="#fff"/>
+    </g>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#sky)"/>
+
+  <!-- sun -->
+  <circle cx="680" cy="110" r="46" fill="#ffe27a"/>
+  <circle cx="680" cy="110" r="64" fill="#ffe27a" opacity="0.25"/>
+
+  <!-- clouds -->
+  <use href="#cloud" x="130" y="170" opacity="0.95"/>
+  <use href="#cloud" x="660" y="330" opacity="0.9" transform="translate(1320 0) scale(-1 1)"/>
+  <use href="#cloud" x="110" y="600" opacity="0.9"/>
+  <use href="#cloud" x="640" y="690" opacity="0.95"/>
+
+  <!-- distant birds -->
+  <path d="M90 300 q10 -12 20 0 q10 -12 20 0" fill="none" stroke="#33506b" stroke-width="3" stroke-linecap="round"/>
+  <path d="M690 480 q8 -10 16 0 q8 -10 16 0" fill="none" stroke="#33506b" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- balloon -->
+  <g>
+    <path d="M400 70 C250 70 190 190 200 290 C210 380 290 440 350 470 L450 470 C510 440 590 380 600 290 C610 190 550 70 400 70 Z" fill="url(#balloon)"/>
+    <g clip-path="url(#balloonClip)">
+      <path d="M400 70 C330 120 310 380 360 470" fill="none" stroke="#ffe9a8" stroke-width="30" opacity="0.9"/>
+      <path d="M400 70 C470 120 490 380 440 470" fill="none" stroke="#ffe9a8" stroke-width="30" opacity="0.9"/>
+      <path d="M400 70 L400 470" stroke="#ffe9a8" stroke-width="26" opacity="0.0"/>
+      <path d="M200 290 Q400 330 600 290" fill="none" stroke="#ffe9a8" stroke-width="10" opacity="0.7"/>
+    </g>
+    <ellipse cx="320" cy="170" rx="34" ry="62" fill="#fff" opacity="0.22" transform="rotate(25 320 170)"/>
+    <path d="M350 470 L450 470 L440 486 L360 486 Z" fill="#7a4a24"/>
+  </g>
+
+  <!-- ropes -->
+  <g stroke="#6b4423" stroke-width="3" stroke-linecap="round">
+    <line x1="358" y1="484" x2="318" y2="590"/>
+    <line x1="442" y1="484" x2="482" y2="590"/>
+    <line x1="380" y1="486" x2="372" y2="590"/>
+    <line x1="420" y1="486" x2="428" y2="590"/>
+  </g>
+
+  <!-- elephant (rides in basket) -->
+  <g>
+    <!-- back legs hidden by basket -->
+    <!-- tail -->
+    <path d="M497 640 q26 4 24 38" fill="none" stroke="#6f7a87" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="521" cy="682" rx="5" ry="8" fill="#4d5560"/>
+    <!-- body -->
+    <ellipse cx="400" cy="640" rx="100" ry="66" fill="url(#elephant)"/>
+    <!-- far ear -->
+    <ellipse cx="318" cy="575" rx="48" ry="58" fill="#98a3af"/>
+    <!-- head -->
+    <circle cx="326" cy="590" r="56" fill="url(#elephant)"/>
+    <!-- near ear -->
+    <path d="M356 548 C420 520 450 590 410 640 C380 670 345 640 348 600 Z" fill="#a3aeba"/>
+    <path d="M366 565 C410 548 428 596 400 624 C380 640 362 622 364 596 Z" fill="#e8b4b8" opacity="0.7"/>
+    <!-- trunk -->
+    <path d="M290 612 C262 640 262 690 282 706 C294 714 306 704 298 692 C288 678 296 650 312 634 Z" fill="#8c97a4"/>
+    <path d="M276 650 q14 6 24 -2 M274 668 q14 6 24 -2" fill="none" stroke="#6f7a87" stroke-width="2"/>
+    <!-- tusk -->
+    <path d="M300 630 C282 636 270 646 268 660 C282 654 296 646 308 640 Z" fill="#fff8e6" stroke="#e5d9b8" stroke-width="1"/>
+    <!-- eye -->
+    <circle cx="322" cy="575" r="7" fill="#fff"/>
+    <circle cx="323" cy="576" r="4" fill="#1d2630"/>
+    <circle cx="324.5" cy="574.5" r="1.4" fill="#fff"/>
+    <!-- cheek -->
+    <ellipse cx="338" cy="604" rx="9" ry="6" fill="#e8a0a8" opacity="0.5"/>
+    <!-- party hat -->
+    <path d="M300 540 L330 496 L352 546 Z" fill="#ffd23f" stroke="#e0a800" stroke-width="2"/>
+    <circle cx="330" cy="494" r="7" fill="#e83f4f"/>
+  </g>
+
+  <!-- basket front -->
+  <g>
+    <path d="M300 640 L500 640 L484 740 Q400 756 316 740 Z" fill="#b97a3c"/>
+    <path d="M300 640 L500 640 L498 656 L302 656 Z" fill="#8f5a26"/>
+    <g stroke="#8f5a26" stroke-width="3" opacity="0.8" fill="none">
+      <path d="M308 680 Q400 692 492 680"/>
+      <path d="M312 706 Q400 718 488 706"/>
+      <path d="M316 728 Q400 740 484 728"/>
+      <path d="M350 656 L346 746"/>
+      <path d="M400 656 L400 752"/>
+      <path d="M450 656 L454 746"/>
+    </g>
+  </g>
+
+  <!-- sandbag/flag decoration -->
+  <path d="M500 640 L500 600 L540 612 L500 624" fill="#3d8bd9" stroke="#2a6db0" stroke-width="2"/>
+  <line x1="500" y1="640" x2="500" y2="596" stroke="#6b4423" stroke-width="3"/>
+</svg>
+</body>
+</html>

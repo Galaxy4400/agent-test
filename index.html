@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Слон на шаре: сравнение моделей</title>
+<style>
+  :root {
+    --bg: #f4f6fb; --card: #ffffff; --ink: #1b2233; --muted: #657089; --line: #e1e6f0;
+    --accent: #3b6df0; --good: #1f9d63; --warn: #d98a00; --bad: #d64545;
+    --haiku: #e8890c; --sonnet: #3b6df0; --opus: #8a4fe0;
+    --shadow: 0 1px 2px rgba(20,30,60,.06), 0 8px 24px rgba(20,30,60,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1420; --card: #171e2e; --ink: #e7ebf5; --muted: #93a0ba; --line: #263049;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 30px; margin: 0 0 6px; letter-spacing: -.02em; }
+  h2 { font-size: 21px; margin: 44px 0 6px; letter-spacing: -.01em; }
+  .sub { color: var(--muted); margin: 0 0 18px; max-width: 820px; }
+
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 99px; font-size: 12px; font-weight: 600; color: #fff; }
+  .pill.haiku { background: var(--haiku); } .pill.sonnet { background: var(--sonnet); } .pill.opus { background: var(--opus); }
+  .eff { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 12px; font-weight: 600;
+    background: var(--line); color: var(--ink); margin-left: 4px; }
+
+  /* ---------- таблица рейтинга ---------- */
+  .tablewrap { background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 980px; }
+  th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted);
+    padding: 12px 14px; border-bottom: 1px solid var(--line); background: var(--card); position: sticky; top: 0; }
+  td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  tr:hover td { background: color-mix(in srgb, var(--accent) 4%, transparent); }
+  .rank { font-size: 22px; font-weight: 800; color: var(--muted); width: 44px; }
+  .thumb { width: 220px; }
+  .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .sub2 { display: block; color: var(--muted); font-size: 12.5px; }
+  .stars { color: var(--warn); letter-spacing: 2px; font-size: 16px; white-space: nowrap; }
+  .stars i { color: var(--line); font-style: normal; }
+  .verdict { font-size: 13.5px; max-width: 360px; }
+  .verdict li { margin: 2px 0; }
+  .verdict ul { margin: 0; padding-left: 16px; }
+  .minus { color: var(--bad); } .plus { color: var(--good); }
+
+  /* превью-iframe: настоящая HTML-страница, уменьшенная */
+  .frame { position: relative; width: 100%; aspect-ratio: 9 / 7; border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--line); background: #cde; }
+  .frame iframe { position: absolute; top: 0; left: 0; width: 900px; height: 700px; border: 0;
+    transform-origin: top left; pointer-events: none; }
+  .frame a { position: absolute; inset: 0; z-index: 2; }
+
+  /* ---------- выводы ---------- */
+  .takeaways { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 14px; }
+  .take { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); }
+  .take h3 { margin: 0 0 6px; font-size: 15px; }
+  .take p { margin: 0; color: var(--muted); font-size: 14px; }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>🐘 Слон на воздушном шаре — 9 прогонов</h1>
+  <p class="sub">Одна и та же задача («HTML с одной SVG-картинкой: слон летит на воздушном шаре, без библиотек»), три модели × три уровня effort. Ниже рейтинг от худшего к лучшему. Картинки в таблице — настоящие живые HTML-файлы (с анимацией там, где она есть). Клик по картинке открывает её на весь экран.</p>
+
+  <h2>Рейтинг: от худшего к лучшему</h2>
+  <p class="sub">Сверху худший результат, снизу лучший.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr><th>#</th><th>Картинка</th><th>Модель / effort</th><th>Оценка</th><th>Время</th><th>Цена (≈)</th><th>Токены</th><th>Что получилось</th></tr>
+    </thead>
+    <tbody id="rank"></tbody>
+  </table>
+  </div>
+
+  <h2>Выводы</h2>
+  <div class="takeaways">
+    <div class="take"><h3>Модель важнее effort</h3><p>Haiku на extra high (около $0.02) всё равно уступает Sonnet на medium: у Haiku шар и корзина существуют отдельно от слона, у Sonnet уже цельная сцена.</p></div>
+    <div class="take"><h3>Effort окупается неравномерно</h3><p>Opus medium → high: цена ×2 (≈$0.35 → $0.73), картинка заметно лучше. Opus high → extra high: ×2,8 по цене и ×4 по времени (≈$2.02, 14 мин), прирост уже меньше, больше деталей и анимации.</p></div>
+    <div class="take"><h3>Extra high платишь за раздумья</h3><p>У Opus xhigh около 50 тыс. из 59 тыс. output-токенов ушли на рассуждения до начала записи SVG, сам файл — 8–9 тыс.</p></div>
+    <div class="take"><h3>Для рабочего дефолта</h3><p>Если картинка «на пределе возможностей», разумная точка — Sonnet high или Opus medium. Extra high — только когда результат реально нужен идеальным.</p></div>
+  </div>
+
+</div>
+
+<script>
+const runs = [
+  // от худшего к лучшему
+  { f:'haiku-medium', m:'haiku', model:'Haiku 5.5', eff:'medium', score:1,
+    time:'≈ 2 мин', cost:'не посчитана', costNote:'модель не смогла оценить', tok:'≈ 43k', tokNote:'счётчик контекста',
+    pros:[], cons:['Слон просто стоит на корзине','Шар не соединён с корзиной (нет строп)','Нет проверки в браузере'], },
+  { f:'haiku-high', m:'haiku', model:'Haiku 5.5', eff:'high', score:2,
+    time:'≈ 1 мин', cost:'≈ $0.02', costNote:'до $0.05', tok:'≈ 92k', tokNote:'счётчик контекста',
+    pros:['Холмы, деревья, ветер, красивое небо'], cons:['Шар висит отдельно, строп нет','Слон лежит в корзине, без ног'], },
+  { f:'haiku-extrahigh', m:'haiku', model:'Haiku 5.5', eff:'extrahigh', score:2,
+    time:'≈ 3,5 мин', cost:'≈ $0.02', costNote:'диапазон $0.01–0.03', tok:'≈ 143k', tokNote:'счётчик контекста',
+    pros:['Флажок, стропы, поднятый хобот','Проверил рендером в Chrome'], cons:['Слон наполовину провалился в корзину, ноги торчат наружу','Фактически дорисовывал мелочи, а не думал'], },
+  { f:'sonnet-medium', m:'sonnet', model:'Sonnet 5.5', eff:'medium', score:3,
+    time:'≈ 24 с', cost:'≈ $0.18', costNote:'завышена, цены допущены', tok:'≈ 41k', tokNote:'счётчик контекста',
+    pros:['Цельная сцена, стропы, праздничный колпак','Очень быстро'], cons:['Слон маленький, хобот и бивень читаются плохо','Без проверки глазами'], },
+  { f:'sonnet-high', m:'sonnet', model:'Sonnet 5.5', eff:'high', score:4,
+    time:'≈ 1 мин 50 с', cost:'≈ $0.26', costNote:'оценка', tok:'≈ 96k', tokNote:'счётчик контекста',
+    pros:['Полосатый шар с поясом, шарф, домик, плетёная корзина','Сам нашёл и исправил баг раскладки'], cons:['Слон показан сбоку и немного прячется за корзиной'], },
+  { f:'sonnet-extrahigh', m:'sonnet', model:'Sonnet 5.5', eff:'extrahigh', score:4,
+    time:'≈ 3 мин 47 с', cost:'≈ $0.46–0.80', costNote:'упрощённо / реалистично', tok:'≈ 113k', tokNote:'в т. ч. 42k скилл с ценами',
+    pros:['Слон спереди, ушки, шапка-пилотка, мешки с песком','Анимация: качание, уши, пламя, облака'], cons:['3 мин ушло на планирование, итог не сильно лучше high','Шар довольно простой'], },
+  { f:'opus-medium', m:'opus', model:'Opus 5.5', eff:'medium', score:4,
+    time:'≈ 45 с', cost:'≈ $0.35', costNote:'по логу сессии', tok:'6k out', tokNote:'271k cache read',
+    pros:['Слон в очках-авиаторах, хобот с флажком','Дальний шар, ветер, птицы, река и домики','Всё с первого раза, без проверки'], cons:['Хобот слегка перекрывает лицо','Немного упрощённая корзина'], },
+  { f:'opus-high', m:'opus', model:'Opus 5.5', eff:'high', score:5,
+    time:'≈ 3,5 мин', cost:'≈ $0.73', costNote:'по логу сессии', tok:'16k out', tokNote:'577k cache read',
+    pros:['Шлем с очками, шарф на ветру, горелка с пламенем','Проверил скриншотом, сдвинул шар от птиц','Богатое окружение'], cons:['Дороже medium вдвое, прирост умеренный'], },
+  { f:'opus-extrahigh', m:'opus', model:'Opus 5.5', eff:'extrahigh', score:5,
+    time:'≈ 14 мин', cost:'≈ $2.02', costNote:'по логу сессии', tok:'59k out', tokNote:'755k cache read',
+    pros:['Лучшая картинка: объём шара, птичка на хоботе, второй шар, горы со снегом','Анимация: шарф, уши, пламя, птичка','Нашёл шов на хоботе и убрал'], cons:['В 5,5 раза дороже medium и в 9 раз дольше','Деньги ушли на раздумья'], },
+];
+const effName = { medium:'medium', high:'high', extrahigh:'extra high' };
+
+function frame(r, big) {
+  return `<div class="frame" data-frame><iframe src="elephant-${r.f}.html" loading="lazy" title="${r.model} ${effName[r.eff]}"></iframe><a href="elephant-${r.f}.html" target="_blank" aria-label="Открыть"></a></div>`;
+}
+function stars(n) { return '★'.repeat(n) + '<i>' + '★'.repeat(5-n) + '</i>'; }
+
+// таблица рейтинга
+document.getElementById('rank').innerHTML = runs.map((r, i) => `
+  <tr>
+    <td class="rank">${i+1}</td>
+    <td class="thumb">${frame(r)}</td>
+    <td><span class="pill ${r.m}">${r.model}</span><span class="eff">${effName[r.eff]}</span></td>
+    <td><span class="stars">${stars(r.score)}</span></td>
+    <td class="num">${r.time}</td>
+    <td class="num">${r.cost}<span class="sub2">${r.costNote}</span></td>
+    <td class="num">${r.tok}<span class="sub2">${r.tokNote}</span></td>
+    <td class="verdict"><ul>
+      ${r.pros.map(p => `<li class="plus">+ <span style="color:var(--ink)">${p}</span></li>`).join('')}
+      ${r.cons.map(p => `<li class="minus">− <span style="color:var(--ink)">${p}</span></li>`).join('')}
+    </ul></td>
+  </tr>`).join('');
+
+// масштабируем iframe под ширину контейнера (900×700 → ширина карточки)
+function fit() {
+  document.querySelectorAll('[data-frame]').forEach(f => {
+    const s = f.clientWidth / 900;
+    f.firstElementChild.style.transform = `scale(${s})`;
+  });
+}
+addEventListener('resize', fit); addEventListener('load', fit); fit();
+</script>
+</body>
+</html>

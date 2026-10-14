@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Слон на воздушном шаре</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #bfe3f7; }
+  body { display: flex; align-items: center; justify-content: center; }
+  svg { width: 100%; height: 100%; max-width: 900px; max-height: 100vh; }
+</style>
+</head>
+<body>
+<svg viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Слон летит на воздушном шаре">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7cc4ef"/>
+      <stop offset="1" stop-color="#e4f4fc"/>
+    </linearGradient>
+    <radialGradient id="balloonShade" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.45"/>
+      <stop offset="0.5" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.18"/>
+    </radialGradient>
+    <clipPath id="balloonClip">
+      <path d="M300 40 C190 40 120 120 120 215 C120 300 190 350 255 400 L345 400 C410 350 480 300 480 215 C480 120 410 40 300 40 Z"/>
+    </clipPath>
+    <linearGradient id="basketGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b57a3f"/>
+      <stop offset="1" stop-color="#7d4f22"/>
+    </linearGradient>
+  </defs>
+
+  <!-- небо -->
+  <rect width="600" height="700" fill="url(#sky)"/>
+  <circle cx="520" cy="80" r="38" fill="#ffe27a"/>
+  <circle cx="520" cy="80" r="52" fill="#ffe27a" opacity="0.25"/>
+
+  <!-- облака -->
+  <g fill="#fff" opacity="0.9">
+    <g transform="translate(70 120)">
+      <ellipse cx="0" cy="0" rx="40" ry="18"/>
+      <ellipse cx="30" cy="-10" rx="30" ry="20"/>
+      <ellipse cx="60" cy="2" rx="34" ry="16"/>
+    </g>
+    <g transform="translate(450 560)">
+      <ellipse cx="0" cy="0" rx="50" ry="20"/>
+      <ellipse cx="40" cy="-14" rx="36" ry="24"/>
+      <ellipse cx="80" cy="0" rx="40" ry="18"/>
+    </g>
+    <g transform="translate(40 610)" opacity="0.8">
+      <ellipse cx="0" cy="0" rx="36" ry="14"/>
+      <ellipse cx="30" cy="-8" rx="26" ry="16"/>
+      <ellipse cx="58" cy="2" rx="30" ry="13"/>
+    </g>
+  </g>
+
+  <!-- птицы -->
+  <g fill="none" stroke="#33536b" stroke-width="2.5" stroke-linecap="round">
+    <path d="M500 220 q8 -8 16 0 q8 -8 16 0"/>
+    <path d="M535 250 q6 -6 12 0 q6 -6 12 0"/>
+  </g>
+
+  <!-- шар -->
+  <g>
+    <g clip-path="url(#balloonClip)">
+      <rect x="100" y="30" width="400" height="380" fill="#e94b3c"/>
+      <path d="M300 30 C230 120 225 300 268 410 L300 410 Z" fill="#f7c948"/>
+      <path d="M300 30 C370 120 375 300 332 410 L300 410 Z" fill="#f7c948"/>
+      <path d="M300 30 C170 100 130 280 210 410 L240 410 C185 300 205 120 300 30 Z" fill="#3d8fd1"/>
+      <path d="M300 30 C430 100 470 280 390 410 L360 410 C415 300 395 120 300 30 Z" fill="#3d8fd1"/>
+      <path d="M100 200 Q300 230 500 200 L500 222 Q300 252 100 222 Z" fill="#fff" opacity="0.85"/>
+      <rect x="100" y="30" width="400" height="380" fill="url(#balloonShade)"/>
+    </g>
+    <path d="M300 40 C190 40 120 120 120 215 C120 300 190 350 255 400 L345 400 C410 350 480 300 480 215 C480 120 410 40 300 40 Z"
+          fill="none" stroke="#8a2a20" stroke-width="3"/>
+    <!-- юбка шара -->
+    <path d="M255 400 L345 400 L336 425 L264 425 Z" fill="#c23a2e" stroke="#8a2a20" stroke-width="2.5"/>
+  </g>
+
+  <!-- стропы -->
+  <g stroke="#5a3a1c" stroke-width="2.5">
+    <line x1="266" y1="425" x2="232" y2="528"/>
+    <line x1="290" y1="425" x2="282" y2="528"/>
+    <line x1="310" y1="425" x2="318" y2="528"/>
+    <line x1="334" y1="425" x2="368" y2="528"/>
+  </g>
+
+  <!-- слон (за передней стенкой корзины) -->
+  <g>
+    <!-- уши -->
+    <ellipse cx="248" cy="478" rx="34" ry="40" fill="#8f9aa6" stroke="#58626d" stroke-width="2.5" transform="rotate(-18 248 478)"/>
+    <ellipse cx="248" cy="480" rx="22" ry="28" fill="#e7b6b8" transform="rotate(-18 248 480)"/>
+    <ellipse cx="352" cy="478" rx="34" ry="40" fill="#8f9aa6" stroke="#58626d" stroke-width="2.5" transform="rotate(18 352 478)"/>
+    <ellipse cx="352" cy="480" rx="22" ry="28" fill="#e7b6b8" transform="rotate(18 352 480)"/>
+    <!-- тело -->
+    <ellipse cx="300" cy="545" rx="58" ry="30" fill="#a3adb8" stroke="#58626d" stroke-width="2.5"/>
+    <!-- голова -->
+    <ellipse cx="300" cy="482" rx="44" ry="42" fill="#a3adb8" stroke="#58626d" stroke-width="2.5"/>
+    <!-- шапочка -->
+    <path d="M276 446 Q300 410 324 446 Z" fill="#3d8fd1" stroke="#245c8a" stroke-width="2"/>
+    <circle cx="300" cy="424" r="6" fill="#f7c948"/>
+    <!-- передняя нога, машет -->
+    <path d="M354 528 Q392 505 398 470" fill="none" stroke="#58626d" stroke-width="22" stroke-linecap="round"/>
+    <path d="M354 528 Q392 505 398 470" fill="none" stroke="#a3adb8" stroke-width="17" stroke-linecap="round"/>
+    <path d="M391 466 h14 M392 472 h12" stroke="#f1ede4" stroke-width="3" stroke-linecap="round"/>
+    <!-- глаза -->
+    <ellipse cx="284" cy="476" rx="5" ry="6.5" fill="#222"/>
+    <ellipse cx="316" cy="476" rx="5" ry="6.5" fill="#222"/>
+    <circle cx="286" cy="473.5" r="1.8" fill="#fff"/>
+    <circle cx="318" cy="473.5" r="1.8" fill="#fff"/>
+    <!-- щёчки -->
+    <ellipse cx="272" cy="494" rx="7" ry="4" fill="#f2a5a8" opacity="0.7"/>
+    <ellipse cx="328" cy="494" rx="7" ry="4" fill="#f2a5a8" opacity="0.7"/>
+    <!-- хобот, поднят -->
+    <path d="M300 492 C298 520 262 528 246 508 C238 496 242 484 252 482"
+          fill="none" stroke="#58626d" stroke-width="20" stroke-linecap="round"/>
+    <path d="M300 492 C298 520 262 528 246 508 C238 496 242 484 252 482"
+          fill="none" stroke="#a3adb8" stroke-width="15" stroke-linecap="round"/>
+    <path d="M286 512 l-3 5 M272 518 l-1 6 M258 514 l2 5" stroke="#7c8692" stroke-width="2" stroke-linecap="round"/>
+    <!-- бивни -->
+    <path d="M288 500 q-6 10 -2 18" fill="none" stroke="#f1ede4" stroke-width="5" stroke-linecap="round"/>
+    <path d="M312 500 q6 10 2 18" fill="none" stroke="#f1ede4" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- корзина -->
+  <g>
+    <rect x="222" y="522" width="156" height="14" rx="6" fill="#6b411a"/>
+    <path d="M228 534 L372 534 L362 610 Q300 618 238 610 Z" fill="url(#basketGrad)" stroke="#5a3613" stroke-width="2.5"/>
+    <g stroke="#5a3613" stroke-width="1.6" opacity="0.7" fill="none">
+      <path d="M231 556 Q300 562 369 556"/>
+      <path d="M234 578 Q300 584 366 578"/>
+      <path d="M236 598 Q300 604 364 598"/>
+      <line x1="252" y1="535" x2="256" y2="611"/>
+      <line x1="276" y1="535" x2="278" y2="614"/>
+      <line x1="300" y1="535" x2="300" y2="615"/>
+      <line x1="324" y1="535" x2="322" y2="614"/>
+      <line x1="348" y1="535" x2="344" y2="611"/>
+    </g>
+    <!-- мешки с песком -->
+    <g stroke="#7a6a48" stroke-width="1.5">
+      <path d="M232 570 q-14 6 -10 24 q10 6 16 -2 z" fill="#d9c79a"/>
+      <path d="M368 570 q14 6 10 24 q-10 6 -16 -2 z" fill="#d9c79a"/>
+    </g>
+  </g>
+
+</svg>
+</body>
+</html>
