@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Слон на воздушном шаре</title>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #dbeef5;
+  }
+  svg {
+    width: min(100vw, 80vh);
+    height: auto;
+    max-height: 100vh;
+    display: block;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  }
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="t">
+  <title id="t">Слон в шапке пилота летит на воздушном шаре</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4f9fd0"/>
+      <stop offset="0.55" stop-color="#a9dcef"/>
+      <stop offset="1" stop-color="#fff0d4"/>
+    </linearGradient>
+    <radialGradient id="sunGlow">
+      <stop offset="0" stop-color="#fff6c8" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#fff6c8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="shine" cx="0.32" cy="0.25" r="0.6">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#fff" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="shade" cx="0.42" cy="0.4" r="0.62">
+      <stop offset="0.6" stop-color="#3a0b10" stop-opacity="0"/>
+      <stop offset="1" stop-color="#3a0b10" stop-opacity="0.35"/>
+    </radialGradient>
+    <linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe066"/>
+      <stop offset="0.6" stop-color="#ff9f1c"/>
+      <stop offset="1" stop-color="#e85d04"/>
+    </linearGradient>
+    <radialGradient id="skin" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#b9c2cc"/>
+      <stop offset="1" stop-color="#8e98a5"/>
+    </radialGradient>
+    <pattern id="wicker" width="24" height="16" patternUnits="userSpaceOnUse">
+      <rect width="24" height="16" fill="#c98a4b"/>
+      <path d="M0 8 Q6 2 12 8 T24 8" fill="none" stroke="#8b5a2b" stroke-width="2"/>
+      <path d="M0 16 H24" stroke="#a86b34" stroke-width="1.5"/>
+    </pattern>
+    <clipPath id="envClip">
+      <path d="M400 60 C575 60 660 180 650 300 C640 400 530 450 455 500 L345 500 C270 450 160 400 150 300 C140 180 225 60 400 60 Z"/>
+    </clipPath>
+    <g id="cloud">
+      <ellipse cx="0" cy="0" rx="60" ry="26"/>
+      <ellipse cx="-38" cy="6" rx="38" ry="20"/>
+      <ellipse cx="40" cy="8" rx="42" ry="18"/>
+      <ellipse cx="-8" cy="-18" rx="36" ry="26"/>
+      <ellipse cx="26" cy="-10" rx="28" ry="20"/>
+    </g>
+  </defs>
+
+  <!-- Небо -->
+  <rect width="800" height="1000" fill="url(#sky)"/>
+
+  <!-- Солнце -->
+  <circle cx="105" cy="110" r="110" fill="url(#sunGlow)"/>
+  <circle cx="105" cy="110" r="46" fill="#ffd166"/>
+
+  <!-- Дальние облака -->
+  <g fill="#fff" opacity="0.85">
+    <use href="#cloud" transform="translate(670 170) scale(1.1)"/>
+    <use href="#cloud" transform="translate(150 560) scale(0.9)"/>
+    <use href="#cloud" transform="translate(690 650) scale(0.75)"/>
+  </g>
+
+  <!-- Дальний шар -->
+  <g transform="translate(690 545) scale(0.18)" opacity="0.75">
+    <path d="M0 -240 C175 -240 260 -120 250 0 C240 100 130 150 55 200 L-55 200 C-130 150 -240 100 -250 0 C-260 -120 -175 -240 0 -240 Z" fill="#7bb6d9"/>
+    <path d="M0 -240 C60 -160 60 120 22 200 L-22 200 C-60 120 -60 -160 0 -240 Z" fill="#f1faee"/>
+    <path d="M-50 200 L-70 330 M50 200 L70 330" stroke="#55707f" stroke-width="8"/>
+    <rect x="-75" y="320" width="150" height="80" rx="10" fill="#9c6b3c"/>
+  </g>
+
+  <!-- Птицы -->
+  <g fill="none" stroke="#2b3a4a" stroke-width="3" stroke-linecap="round">
+    <path d="M665 395 q10 -10 20 0 q10 -10 20 0"/>
+    <path d="M712 420 q8 -8 16 0 q8 -8 16 0"/>
+    <path d="M690 448 q6 -6 12 0 q6 -6 12 0"/>
+  </g>
+
+  <!-- Земля далеко внизу -->
+  <g opacity="0.85">
+    <path d="M0 930 C120 900 240 915 360 905 C500 892 640 915 800 900 L800 1000 L0 1000 Z" fill="#a7c98a"/>
+    <path d="M0 960 C150 940 300 965 450 950 C600 935 700 955 800 945 L800 1000 L0 1000 Z" fill="#7fae6a"/>
+    <path d="M520 1000 C540 975 600 965 640 955 C690 942 740 948 800 935" fill="none" stroke="#9fd3e6" stroke-width="7"/>
+    <g fill="#5a8f4e">
+      <circle cx="90" cy="948" r="7"/><circle cx="104" cy="951" r="6"/>
+      <circle cx="250" cy="958" r="7"/><circle cx="265" cy="955" r="5"/>
+      <circle cx="420" cy="944" r="6"/><circle cx="700" cy="958" r="7"/>
+    </g>
+    <g>
+      <rect x="320" y="962" width="16" height="11" fill="#f4f1de"/>
+      <path d="M317 963 L328 954 L339 963 Z" fill="#c1121f"/>
+      <rect x="350" y="967" width="12" height="9" fill="#f4f1de"/>
+      <path d="M347 968 L356 960 L365 968 Z" fill="#c1121f"/>
+    </g>
+  </g>
+
+  <!-- Линии ветра -->
+  <g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity="0.7">
+    <path d="M60 690 C120 680 170 700 220 688"/>
+    <path d="M40 740 C110 732 150 752 200 742"/>
+    <path d="M90 800 C150 792 200 808 250 798"/>
+  </g>
+
+  <!-- ===== Воздушный шар ===== -->
+  <!-- Оболочка: клинья -->
+  <g clip-path="url(#envClip)">
+    <path d="M400 60 C-128 90 -80 380 312 500 L360 500 C184 380 162 90 400 60 Z" fill="#e63946"/>
+    <path d="M400 60 C162 90 184 380 360 500 L377 500 C274 380 261 90 400 60 Z" fill="#ffd166"/>
+    <path d="M400 60 C261 90 274 380 377 500 L392 500 C358 380 354 90 400 60 Z" fill="#e63946"/>
+    <path d="M400 60 C354 90 358 380 392 500 L408 500 C442 380 446 90 400 60 Z" fill="#ffd166"/>
+    <path d="M400 60 C446 90 442 380 408 500 L423 500 C526 380 539 90 400 60 Z" fill="#e63946"/>
+    <path d="M400 60 C539 90 526 380 423 500 L440 500 C616 380 638 90 400 60 Z" fill="#ffd166"/>
+    <path d="M400 60 C638 90 616 380 440 500 L488 500 C880 380 928 90 400 60 Z" fill="#e63946"/>
+    <!-- Декоративный пояс -->
+    <path d="M140 352 C260 392 540 392 660 352 L660 376 C540 416 260 416 140 376 Z" fill="#1d3557"/>
+    <g fill="#f1faee">
+      <circle cx="230" cy="380" r="5"/><circle cx="290" cy="391" r="5"/>
+      <circle cx="350" cy="396" r="5"/><circle cx="410" cy="397" r="5"/>
+      <circle cx="470" cy="394" r="5"/><circle cx="530" cy="387" r="5"/>
+      <circle cx="585" cy="376" r="5"/>
+    </g>
+    <!-- Объём -->
+    <rect x="140" y="50" width="520" height="460" fill="url(#shade)"/>
+    <rect x="140" y="50" width="520" height="460" fill="url(#shine)"/>
+  </g>
+  <path d="M400 60 C575 60 660 180 650 300 C640 400 530 450 455 500 L345 500 C270 450 160 400 150 300 C140 180 225 60 400 60 Z"
+        fill="none" stroke="#9b2226" stroke-width="3"/>
+
+  <!-- Юбка и горелка -->
+  <path d="M345 500 L455 500 L442 532 L358 532 Z" fill="#8d2a2f" stroke="#5e1a1f" stroke-width="2"/>
+  <path d="M400 512 C412 528 418 542 409 554 Q400 561 391 554 C382 542 388 528 400 512 Z" fill="url(#flame)"/>
+  <path d="M400 530 C405 538 406 546 401 552 Q397 549 396 544 C395 540 397 535 400 530 Z" fill="#fff3b0"/>
+  <path d="M380 568 L362 532 M420 568 L438 532" stroke="#5b5b5b" stroke-width="2"/>
+  <rect x="380" y="556" width="40" height="14" rx="3" fill="#495057" stroke="#2b2f33" stroke-width="2"/>
+  <rect x="386" y="559" width="28" height="3" fill="#868e96"/>
+
+  <!-- Задние стропы -->
+  <g stroke="#6b4423" stroke-width="2.5">
+    <path d="M380 532 L362 768"/>
+    <path d="M420 532 L438 768"/>
+  </g>
+
+  <!-- ===== Слон ===== -->
+  <!-- Уши -->
+  <path d="M350 668 C298 618 262 688 276 738 C288 776 336 772 358 734 Z" fill="#9aa4b0" stroke="#6f7a87" stroke-width="2.5"/>
+  <path d="M344 680 C308 650 286 696 294 728 C302 752 330 750 346 726 Z" fill="#f2b5c0" opacity="0.9"/>
+  <path d="M450 668 C502 618 538 688 524 738 C512 776 464 772 442 734 Z" fill="#9aa4b0" stroke="#6f7a87" stroke-width="2.5"/>
+  <path d="M456 680 C492 650 514 696 506 728 C498 752 470 750 454 726 Z" fill="#f2b5c0" opacity="0.9"/>
+
+  <!-- Голова -->
+  <ellipse cx="400" cy="692" rx="60" ry="56" fill="url(#skin)" stroke="#6f7a87" stroke-width="2.5"/>
+
+  <!-- Шлем пилота и очки -->
+  <path d="M341 684 C334 612 466 612 459 684 C432 668 368 668 341 684 Z" fill="#8b5a2b" stroke="#5c3a1a" stroke-width="2.5"/>
+  <path d="M352 660 C380 640 420 640 448 660" fill="none" stroke="#a9743f" stroke-width="3"/>
+  <path d="M343 666 L457 666" stroke="#3d2a17" stroke-width="5"/>
+  <circle cx="378" cy="664" r="14" fill="#a8dadc" stroke="#343a40" stroke-width="4"/>
+  <circle cx="422" cy="664" r="14" fill="#a8dadc" stroke="#343a40" stroke-width="4"/>
+  <path d="M371 658 L380 655 M415 658 L424 655" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Глаза, щёки, улыбка -->
+  <circle cx="380" cy="696" r="6.5" fill="#212529"/>
+  <circle cx="420" cy="696" r="6.5" fill="#212529"/>
+  <circle cx="382" cy="694" r="2.2" fill="#fff"/>
+  <circle cx="422" cy="694" r="2.2" fill="#fff"/>
+  <ellipse cx="362" cy="716" rx="10" ry="6" fill="#f28ca0" opacity="0.5"/>
+  <ellipse cx="438" cy="716" rx="10" ry="6" fill="#f28ca0" opacity="0.5"/>
+  <path d="M378 726 Q386 735 392 729" fill="none" stroke="#4a4f57" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Шарф -->
+  <path d="M352 740 Q400 756 448 740 L450 760 Q400 776 350 760 Z" fill="#e76f51" stroke="#b5462c" stroke-width="2"/>
+  <path d="M358 746 C318 736 288 756 248 734 L242 752 C284 776 318 764 356 762 Z" fill="#e76f51" stroke="#b5462c" stroke-width="2"/>
+  <path d="M352 754 C322 760 296 786 262 778 L262 794 C300 804 330 778 354 766 Z" fill="#f4a261" stroke="#b5462c" stroke-width="2"/>
+  <g stroke="#f4f1de" stroke-width="3">
+    <path d="M300 748 L296 762"/><path d="M275 746 L270 760"/>
+  </g>
+
+  <!-- Корзина -->
+  <path d="M300 778 L500 778 L488 870 Q400 880 312 870 Z" fill="url(#wicker)" stroke="#6b4423" stroke-width="3"/>
+  <path d="M312 870 Q400 880 488 870" fill="none" stroke="#5c3a1a" stroke-width="5"/>
+  <rect x="292" y="765" width="216" height="18" rx="9" fill="#8b5a2b" stroke="#5c3a1a" stroke-width="2"/>
+
+  <!-- Мешки с песком -->
+  <g stroke="#6b4423" stroke-width="2">
+    <path d="M304 795 L290 826" fill="none"/>
+    <path d="M496 795 L510 826" fill="none"/>
+    <path d="M280 828 Q290 822 300 828 Q306 852 290 856 Q274 852 280 828 Z" fill="#d4a373"/>
+    <path d="M500 828 Q510 822 520 828 Q526 852 510 856 Q494 852 500 828 Z" fill="#d4a373"/>
+  </g>
+
+  <!-- Передние стропы -->
+  <g stroke="#6b4423" stroke-width="3">
+    <path d="M358 532 L302 768"/>
+    <path d="M442 532 L498 768"/>
+  </g>
+
+  <!-- Передние ноги на бортике -->
+  <g fill="url(#skin)" stroke="#6f7a87" stroke-width="2.5">
+    <ellipse cx="340" cy="766" rx="24" ry="15"/>
+    <ellipse cx="460" cy="766" rx="24" ry="15"/>
+  </g>
+  <g fill="#f4ecd8">
+    <ellipse cx="328" cy="776" rx="5" ry="3.5"/><ellipse cx="340" cy="778" rx="5" ry="3.5"/><ellipse cx="352" cy="776" rx="5" ry="3.5"/>
+    <ellipse cx="448" cy="776" rx="5" ry="3.5"/><ellipse cx="460" cy="778" rx="5" ry="3.5"/><ellipse cx="472" cy="776" rx="5" ry="3.5"/>
+  </g>
+
+  <!-- Бивни -->
+  <path d="M387 716 Q376 732 386 744 Q390 730 394 718 Z" fill="#fffaf0" stroke="#c9bfa6" stroke-width="1.5"/>
+  <path d="M413 716 Q424 732 414 744 Q410 730 406 718 Z" fill="#fffaf0" stroke="#c9bfa6" stroke-width="1.5"/>
+
+  <!-- Хобот с флажком -->
+  <path d="M523 662 L540 590" stroke="#5c3a1a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M540 590 L582 604 L536 620 Z" fill="#2a9d8f" stroke="#1f6f66" stroke-width="2"/>
+  <path d="M400 706 C398 748 426 768 456 750 C486 732 496 692 518 664"
+        fill="none" stroke="#6f7a87" stroke-width="27" stroke-linecap="round"/>
+  <path d="M400 706 C398 748 426 768 456 750 C486 732 496 692 518 664"
+        fill="none" stroke="#a3acb7" stroke-width="22" stroke-linecap="round"/>
+  <path d="M403 716 C401 748 426 768 456 750 C486 732 496 692 515 668"
+        fill="none" stroke="#7d8794" stroke-width="16" stroke-dasharray="2 11" opacity="0.6"/>
+  <ellipse cx="520" cy="662" rx="8" ry="11" transform="rotate(40 520 662)" fill="#b9c2cc" stroke="#6f7a87" stroke-width="2"/>
+
+  <!-- Ближнее облако -->
+  <g fill="#fff" opacity="0.92">
+    <use href="#cloud" transform="translate(120 900) scale(1.3)"/>
+    <use href="#cloud" transform="translate(720 880) scale(1.1)"/>
+  </g>
+</svg>
+</body>
+</html>
